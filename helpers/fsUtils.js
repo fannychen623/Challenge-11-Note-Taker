@@ -32,3 +32,5 @@ const readAndAppend = (content, file) => {
 };
 
 module.exports = { readFromFile, writeToFile, readAndAppend };
+
+// Sourced from edX Boot Camps LLC

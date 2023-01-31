@@ -2,7 +2,7 @@ const nts = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
 const { readAndAppend, readFromFile, writeToFile } = require('../helpers/fsUtils');
 
-// GET Route for retrieving all the feedback
+// GET Route for retrieving all the notes
 nts.get('/', (req, res) =>
   readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
 );
@@ -10,7 +10,7 @@ nts.get('/', (req, res) =>
 // DELETE Route for a specific note
 nts.delete('/:id', (req, res) => {
   const noteId = req.params.id;
-  console.log(noteId);
+  
   readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
@@ -25,14 +25,14 @@ nts.delete('/:id', (req, res) => {
     });
 });  
 
-// POST Route for submitting feedback
+// POST Route for submitting a new note
 nts.post('/', (req, res) => {
   // Destructuring assignment for the items in req.body
   const { title, text } = req.body;
 
   // If all the required properties are present
   if (title && text) {
-    // Variable for the object we will save
+    // Variable for the object saved
     const newNote = {
       title,
       text,
