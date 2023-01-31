@@ -15,7 +15,7 @@ nts.delete('/:id', (req, res) => {
     .then((data) => JSON.parse(data))
     .then((json) => {
       // Make a new array of all notes except the one with the ID provided in the URL
-      const result = json.filter((title) => title.id !== noteId);
+      const result = json.filter((note) => note.id !== noteId);
 
       // Save that array to the filesystem
       writeToFile('./db/db.json', result);
